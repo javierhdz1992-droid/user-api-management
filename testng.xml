@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-current.dtd">
 <suite name="UserAPI Test Suite">
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
     <test name="User API Tests">
         <classes>
             <class name="api.tests.CreateUserTest"/>
