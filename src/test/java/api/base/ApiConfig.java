@@ -1,5 +1,7 @@
 package api.base;
 
+import io.qameta.allure.Allure;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +38,7 @@ public class ApiConfig {
 
     public static String getBaseUrl(){
         String env = System.getProperty("env", "DEV");
+        Allure.label("environment", System.getProperty("env"));
 
         switch (env.toUpperCase()) {
             case "PROD":
