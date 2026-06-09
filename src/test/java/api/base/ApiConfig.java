@@ -38,7 +38,7 @@ public class ApiConfig {
     public static String getBaseUrl(){
         String env = System.getProperty("env", "DEV");
         //To generate Allure for DEV and PROD
-        Allure.label("environment", System.getProperty("env"));
+        Allure.label("environment", env);
 
         switch (env.toUpperCase()) {
             case "PROD":
