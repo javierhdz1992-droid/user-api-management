@@ -15,12 +15,6 @@ pipeline {
     }
 
     parameters {
-        choice(
-                name: 'ENV',
-                choices: ['DEV', 'PROD'],
-                description: 'Execution Environment'
-        )
-
         booleanParam(
                 name: 'HEADLESS',
                 defaultValue: true,
@@ -36,22 +30,19 @@ pipeline {
             }
         }
 
-        stage('Clean') {
-            steps {
-                bat 'mvn clean'
-            }
-        }
-
-        stage('Build & Test') {
+        stage('Matrix Test (DEV + PROD)') {
             steps {
                 script {
-                    def headlessValue = params.HEADLESS ? "true" : "false"
+                    ['DEV', 'PROD'].each { environment ->
 
-                    bat """
-                    mvn clean test ^
-                    -Denv=%ENV% ^
-                    -Dheadless=${headlessValue}
-                    """
+                        echo "Running tests for ENV = ${environment}"
+
+                        bat """
+                        mvn clean test ^
+                        -Denv=${environment} ^
+                        -Dheadless=${params.HEADLESS}
+                        """
+                    }
                 }
             }
         }
