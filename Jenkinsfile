@@ -35,23 +35,17 @@ pipeline {
 
                 stage('DEV') {
                     steps {
-                        dir('dev') {
-                            bat """
-                    mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS} ^
-                    -Dallure.results.directory=target/allure-results
-                    """
-                        }
+                        bat """
+                mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS}
+                """
                     }
                 }
 
                 stage('PROD') {
                     steps {
-                        dir('prod') {
-                            bat """
-                    mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS} ^
-                    -Dallure.results.directory=target/allure-results
-                    """
-                        }
+                        bat """
+                mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS}
+                """
                     }
                 }
             }
