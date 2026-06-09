@@ -44,11 +44,15 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                bat """
-                mvn test ^
-                -Denv=%ENV% ^
-                -Dheadless=%HEADLESS%
-                """
+                script {
+                    def headlessValue = params.HEADLESS ? "true" : "false"
+
+                    bat """
+                    mvn clean test ^
+                    -Denv=%ENV% ^
+                    -Dheadless=${headlessValue}
+                    """
+                }
             }
         }
     }

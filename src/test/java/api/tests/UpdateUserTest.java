@@ -1,6 +1,6 @@
 package api.tests;
 
-import api.endpoints.DevUsersEndpoint;
+import api.endpoints.UsersEndpoint;
 import api.models.CreateUserRequest;
 import api.models.UpdateUserRequest;
 import api.utils.TestDataFactory;
@@ -14,7 +14,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User Successfully - Status Code 200")
     public void updateUserSuccessfully(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -40,7 +40,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User Without Name - Status Code 400")
     public void updateUserWithoutName(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         UpdateUserRequest updateUserRequest = new UpdateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
@@ -67,7 +67,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User Without Email - Status Code 400")
     public void updateUserWithoutEmail(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         UpdateUserRequest updateUserRequest = new UpdateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
@@ -94,7 +94,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User Without Age - Status Code 400")
     public void updateUserWithoutAge(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         UpdateUserRequest updateUserRequest = new UpdateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
@@ -121,7 +121,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User with duplicate email - Status Code 201")
     public void updateUserWithDuplicateEmail() {
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory user1 = new  TestDataFactory();
         String email1 = user1.getEmail();
@@ -156,7 +156,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User with Age Less than 1 - Status Code 400")
     public void updateUserWithAgeLessThan1(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -182,7 +182,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User with Age Greater than 1 - Status Code 400")
     public void updateUserWithAgeGreaterThan150(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -208,7 +208,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User with invalid age format - Status Code 400")
     public void updateUserWithinvalidAge(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         UpdateUserRequest updateUserRequest = new UpdateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
@@ -235,7 +235,7 @@ public class UpdateUserTest {
     @Test
     @Story("Update User without email Header - Status Code 400")
     public void updateUserWithoutEmailHeader(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 

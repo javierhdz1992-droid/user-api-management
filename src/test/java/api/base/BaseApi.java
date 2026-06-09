@@ -1,23 +1,17 @@
 package api.base;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 public class BaseApi {
 
-    protected RequestSpecification devRequest(){
+    protected RequestSpecification requestSpec(){
+        System.out.println("Base URL: " + ApiConfig.getBaseUrl());
         return RestAssured
                 .given()
-                .baseUri(ApiConfig.getDevBaseUrl())
-                .header("Content-Type", "application/json");
+                .baseUri(ApiConfig.getBaseUrl())
+                .contentType(ContentType.JSON);
                 //.log().body();
-    }
-
-    protected RequestSpecification prodRequest(){
-        return RestAssured
-                .given()
-                .baseUri(ApiConfig.getProdBaseUrl())
-                .header("Content-Type", "application/json");
-                //.log().all();
     }
 }

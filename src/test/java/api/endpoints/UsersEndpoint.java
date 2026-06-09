@@ -6,32 +6,32 @@ import api.models.CreateUserRequest;
 import api.models.UpdateUserRequest;
 import io.restassured.response.Response;
 
-public class DevUsersEndpoint extends BaseApi{
+public class UsersEndpoint extends BaseApi{
 
     private static final String USERS_PATH = "/users";
 
     public Response listUsers() {
-        return  devRequest()
+        return  requestSpec()
                 .when()
                 .get(USERS_PATH);
     }
 
     public Response getUser(String email){
-        return  devRequest()
+        return  requestSpec()
                 .pathParam("email", email)
                 .when()
                 .get(USERS_PATH + "/{email}");
     }
 
     public Response createUser(CreateUserRequest body){
-        return devRequest()
+        return requestSpec()
                 .body(body)
                 .when()
                 .post(USERS_PATH);
     }
 
     public Response updateUser(String email, UpdateUserRequest body){
-        return devRequest()
+        return requestSpec()
                 .pathParam("email", email)
                 .body(body)
                 .when()
@@ -39,14 +39,14 @@ public class DevUsersEndpoint extends BaseApi{
     }
 
     public Response updateUserWithoutHeader(UpdateUserRequest body){
-        return devRequest()
+        return requestSpec()
                 .body(body)
                 .when()
                 .put(USERS_PATH);
     }
 
     public Response deleteUser(String email){
-        return devRequest()
+        return requestSpec()
                 .header("Authentication", ApiConfig.getAuthToken())
                 .pathParam("email", email)
                 .when()
@@ -54,7 +54,7 @@ public class DevUsersEndpoint extends BaseApi{
     }
 
     public Response deleteUserWithoutAuth(String email){
-        return devRequest()
+        return requestSpec()
                 .pathParam("email", email)
                 .when()
                 .delete(USERS_PATH + "/{email}");

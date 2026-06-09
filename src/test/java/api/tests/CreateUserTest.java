@@ -1,6 +1,6 @@
 package api.tests;
 
-import api.endpoints.DevUsersEndpoint;
+import api.endpoints.UsersEndpoint;
 import api.models.CreateUserRequest;
 import api.utils.TestDataFactory;
 import io.qameta.allure.Story;
@@ -14,7 +14,7 @@ public class CreateUserTest {
     @Test
     @Story("Create User Successfully - Status Code 200")
     public void createUserSuccessfully(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -35,7 +35,7 @@ public class CreateUserTest {
     @Test
     @Story("Create User without name - Status Code 400")
     public void createUserWithoutName(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         CreateUserRequest createUserRequest = new CreateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -50,7 +50,7 @@ public class CreateUserTest {
     @Test
     @Story("Create User without email - Status Code 400")
     public void createUserWithoutEmail(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         CreateUserRequest createUserRequest = new CreateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -65,7 +65,7 @@ public class CreateUserTest {
     @Test
     @Story("Create User without age - Status Code 400")
     public void createUserWithoutAge(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         CreateUserRequest createUserRequest = new CreateUserRequest();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -80,7 +80,7 @@ public class CreateUserTest {
     @Test
     @Story("Create two users with the same name - Status Code 201")
     public void createUsersWithSameName() {
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory user1 = new TestDataFactory();
 
@@ -108,7 +108,7 @@ public class CreateUserTest {
     @Test(enabled = false)
     @Story("Create two users with the same email - Status Code 409")
     public void createUsersWithSameEmail() {
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory user1 = new TestDataFactory();
 
@@ -134,7 +134,7 @@ public class CreateUserTest {
     @Test
     @Story("Create two users with the same age - Status Code 201")
     public void createUsersWithSameAge() {
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory user1 = new TestDataFactory();
 
@@ -160,7 +160,7 @@ public class CreateUserTest {
     @Test
     @Story("Create User with age less than 1 - Status Code 400")
     public void createUserWithAgeLessThan1(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -177,7 +177,7 @@ public class CreateUserTest {
     @Test
     @Story("Create User with age greater than 150 - Status Code 400")
     public void createUserWithAgeGreaterThan150(){
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         TestDataFactory testdata = new  TestDataFactory();
 
@@ -195,7 +195,7 @@ public class CreateUserTest {
     @Story("Create User with invalid age format - Status Code 400")
     public void createUserWithInvalidAge(){
         TestDataFactory testdata = new  TestDataFactory();
-        DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
+        UsersEndpoint usersEndpoint = new UsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
         CreateUserRequest createUserRequest = new CreateUserRequest();
 

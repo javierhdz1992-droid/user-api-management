@@ -12,6 +12,12 @@
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <env>DEV</env>
+        <headless>true</headless>
+
+        <!-- NECESARIO para Allure -->
+        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
     </properties>
 
     <dependencies>
@@ -87,14 +93,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.5</version>
+
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
 
-                    <!-- NECESARIO para Allure -->
+                    <!-- NECESARIO para ejecutar en DEV y PROD -->
                     <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <env>${env}</env>
+                        <headless>${headless}</headless>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

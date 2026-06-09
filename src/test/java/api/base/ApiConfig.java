@@ -34,15 +34,23 @@ public class ApiConfig {
         }
     }
 
-    public static String getDevBaseUrl(){
-        return properties.getProperty("dev.base.url");
-    }
+    public static String getBaseUrl(){
+        String env = System.getProperty("env", "DEV");
 
-    public static String getProdBaseUrl(){
-        return properties.getProperty("prod.base.url");
+        switch (env.toUpperCase()) {
+            case "PROD":
+                return properties.getProperty("prod.base.url");
+            case "DEV":
+            default:
+                return properties.getProperty("dev.base.url");
+        }
     }
 
     public static String getAuthToken(){
         return properties.getProperty("auth.token");
+    }
+
+    public static String getEnviroment(){
+        return System.getProperty("env", "DEV");
     }
 }
