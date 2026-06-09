@@ -32,21 +32,26 @@ pipeline {
 
         stage('Matrix Test') {
             parallel {
+
                 stage('DEV') {
                     steps {
-                        bat """
-                mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS} ^
-                -Dallure.results.directory=target/allure-results-dev
-                """
+                        dir('dev') {
+                            bat """
+                    mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS} ^
+                    -Dallure.results.directory=target/allure-results
+                    """
+                        }
                     }
                 }
 
                 stage('PROD') {
                     steps {
-                        bat """
-                mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS} ^
-                -Dallure.results.directory=target/allure-results-prod
-                """
+                        dir('prod') {
+                            bat """
+                    mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS} ^
+                    -Dallure.results.directory=target/allure-results
+                    """
+                        }
                     }
                 }
             }
@@ -58,12 +63,12 @@ pipeline {
         always {
 
             junit allowEmptyResults: true,
-                    testResults: 'target/surefire-reports/*.xml'
+                    testResults: 'dev/target/surefire-reports/*.xml, prod/target/surefire-reports/*.xml'
 
             allure([
                     results: [
-                            [path: 'target/allure-results-dev'],
-                            [path: 'target/allure-results-prod']
+                            [path: 'dev/target/allure-results'],
+                            [path: 'prod/target/allure-results']
                     ]
             ])
 
