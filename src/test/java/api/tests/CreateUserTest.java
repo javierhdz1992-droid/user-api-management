@@ -106,7 +106,7 @@ public class CreateUserTest {
     }
 
     @Test(enabled = false)
-    @Story("Create two users with the same email - Status Code 409 for duplicate email")
+    @Story("Create two users with the same email - Status Code 409")
     public void createUsersWithSameEmail() {
         DevUsersEndpoint usersEndpoint = new DevUsersEndpoint();
         SoftAssert softAssert = new SoftAssert();
