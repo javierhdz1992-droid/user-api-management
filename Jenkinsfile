@@ -30,18 +30,23 @@ pipeline {
             }
         }
 
-        stage('Matrix Test (DEV + PROD)') {
-            steps {
-                script {
-                    ['DEV', 'PROD'].each { environment ->
-
-                        echo "Running tests for ENV = ${environment}"
-
+        stage('Matrix Test') {
+            parallel {
+                stage('DEV') {
+                    steps {
                         bat """
-                        mvn clean test ^
-                        -Denv=${environment} ^
-                        -Dheadless=${params.HEADLESS}
-                        """
+                mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS} ^
+                -Dallure.results.directory=target/allure-results-dev
+                """
+                    }
+                }
+
+                stage('PROD') {
+                    steps {
+                        bat """
+                mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS} ^
+                -Dallure.results.directory=target/allure-results-prod
+                """
                     }
                 }
             }
@@ -55,10 +60,12 @@ pipeline {
             junit allowEmptyResults: true,
                     testResults: 'target/surefire-reports/*.xml'
 
-            allure(
-                    commandline: 'Allure',
-                    results: [[path: 'target/allure-results']]
-            )
+            allure([
+                    results: [
+                            [path: 'target/allure-results-dev'],
+                            [path: 'target/allure-results-prod']
+                    ]
+            ])
 
             archiveArtifacts(
                     artifacts: 'target/**/*',
