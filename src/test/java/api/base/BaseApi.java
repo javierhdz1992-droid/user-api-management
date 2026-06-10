@@ -6,7 +6,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class BaseApi {
 
-    protected RequestSpecification requestSpec(){
+    public RequestSpecification requestSpec(){
         System.out.println("Base URL: " + ApiConfig.getBaseUrl());
         return RestAssured
                 .given()
