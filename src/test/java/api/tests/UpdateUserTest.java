@@ -1,5 +1,6 @@
 package api.tests;
 
+import api.base.BaseTest;
 import api.endpoints.UsersEndpoint;
 import api.models.CreateUserRequest;
 import api.models.UpdateUserRequest;
@@ -9,7 +10,7 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class UpdateUserTest {
+public class UpdateUserTest extends BaseTest {
 
     @Test
     @Story("Update User Successfully - Status Code 200")

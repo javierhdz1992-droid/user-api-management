@@ -3,6 +3,7 @@
 <suite name="UserAPI Test Suite">
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        <listener class-name="api.listeners.AllureEnvironmentListener"/>
     </listeners>
     <test name="User API Tests">
         <classes>

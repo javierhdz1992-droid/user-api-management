@@ -9,20 +9,6 @@ public class ApiConfig {
 
     private static final Properties properties = new Properties();
 
-    /**
-    static{
-        try{
-            InputStream inputStream = ApiConfig.class.getClassLoader().getResourceAsStream("config.properties");
-            if (inputStream == null) {
-                throw new RuntimeException("config.properties not found in classpath");
-            }
-            properties.load(inputStream);
-            inputStream.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Error loading config.properties", e);
-        }
-    }**/
-
     static {
         try {
             FileInputStream fis = new FileInputStream(
@@ -48,9 +34,5 @@ public class ApiConfig {
 
     public static String getAuthToken(){
         return properties.getProperty("auth.token");
-    }
-
-    public static String getEnviroment(){
-        return System.getProperty("env", "DEV");
     }
 }

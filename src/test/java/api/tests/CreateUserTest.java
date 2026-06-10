@@ -1,5 +1,6 @@
 package api.tests;
 
+import api.base.BaseTest;
 import api.endpoints.UsersEndpoint;
 import api.models.CreateUserRequest;
 import api.utils.TestDataFactory;
@@ -9,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class CreateUserTest {
+public class CreateUserTest extends BaseTest {
 
     @Test
     @Story("Create User Successfully - Status Code 200")
