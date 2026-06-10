@@ -15,10 +15,15 @@ pipeline {
     }
 
     parameters {
+        choice(
+                name: 'ENV',
+                choices: ['DEV', 'PROD'],
+                description: 'Select execution environment'
+        )
+
         booleanParam(
                 name: 'HEADLESS',
-                defaultValue: false,
-                description: 'No run tests in headless mode'
+                defaultValue: false
         )
     }
 
@@ -30,18 +35,11 @@ pipeline {
             }
         }
 
-        stage('DEV Tests') {
+        stage('Run Tests') {
             steps {
+                // Ejecutar la fase 'verify' para que el goal 'allure:report' ligado a verify se ejecute
                 bat """
-                mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS}
-                """
-            }
-        }
-
-        stage('PROD Tests') {
-            steps {
-                bat """
-                mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS}
+                mvn clean verify -Denv=${params.ENV} -Dheadless=${params.HEADLESS} -Dallure.results.directory=target/allure-results
                 """
             }
         }

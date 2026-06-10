@@ -4,11 +4,13 @@ import io.qameta.allure.Allure;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-    @BeforeMethod
-    public void setupEnvironment() {
-        String env = System.getProperty("env", "DEV");
-        Allure.label("environment", env);
 
-        System.out.println("Running tests in ENV: " + env);
+    @BeforeMethod
+    public void setup() {
+        String env = System.getProperty("env", "DEV");
+
+        Allure.getLifecycle().updateTestCase(testResult ->
+                testResult.setName("[" + env + "] " + testResult.getName())
+        );
     }
 }
