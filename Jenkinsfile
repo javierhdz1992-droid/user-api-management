@@ -17,8 +17,8 @@ pipeline {
     parameters {
         booleanParam(
                 name: 'HEADLESS',
-                defaultValue: true,
-                description: 'Run tests in headless mode'
+                defaultValue: false,
+                description: 'No run tests in headless mode'
         )
     }
 
@@ -30,24 +30,19 @@ pipeline {
             }
         }
 
-        stage('Matrix Test') {
-            parallel {
-
-                stage('DEV') {
-                    steps {
-                        bat """
+        stage('DEV Tests') {
+            steps {
+                bat """
                 mvn clean test -Denv=DEV -Dheadless=${params.HEADLESS}
                 """
-                    }
-                }
+            }
+        }
 
-                stage('PROD') {
-                    steps {
-                        bat """
+        stage('PROD Tests') {
+            steps {
+                bat """
                 mvn clean test -Denv=PROD -Dheadless=${params.HEADLESS}
                 """
-                    }
-                }
             }
         }
     }
@@ -57,13 +52,10 @@ pipeline {
         always {
 
             junit allowEmptyResults: true,
-                    testResults: 'dev/target/surefire-reports/*.xml, prod/target/surefire-reports/*.xml'
+                    testResults: 'target/surefire-reports/*.xml'
 
             allure([
-                    results: [
-                            [path: 'dev/target/allure-results'],
-                            [path: 'prod/target/allure-results']
-                    ]
+                    results: [[path: 'target/allure-results']]
             ])
 
             archiveArtifacts(
