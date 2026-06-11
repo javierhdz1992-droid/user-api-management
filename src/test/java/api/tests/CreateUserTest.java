@@ -106,7 +106,7 @@ public class CreateUserTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(enabled = false)
+    @Test
     @Story("Create two users with the same email - Status Code 409")
     public void createUsersWithSameEmail() {
         UsersEndpoint usersEndpoint = new UsersEndpoint();
