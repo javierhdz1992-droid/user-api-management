@@ -9,6 +9,8 @@
         <classes>
             <class name="api.tests.CreateUserTest"/>
             <class name="api.tests.UpdateUserTest"/>
+            <class name="api.tests.GetUserTest"/>
+            <class name="api.tests.DeleteUserTest"/>
         </classes>
     </test>
 </suite>
